@@ -96,17 +96,23 @@ The SQL Server database is automatically created and populated with initial data
       "unitPrice": 100,
       "discount": 10
     },
-{
-      "productId": 302,
-      "quantity": 5,
-      "unitPrice": 100,
-      "discount": 10
-    },
-{
-      "productId": 301,
-      "quantity": 5,
-      "unitPrice": 100,
-      "discount": 10
-    }
-  ]
-}
+   {
+         "productId": 302,
+         "quantity": 5,
+         "unitPrice": 100,
+         "discount": 10
+       },
+   {
+         "productId": 301,
+         "quantity": 5,
+         "unitPrice": 100,
+         "discount": 10
+       }
+     ]
+   }
+
+
+````
+
+## Notes
+- The Product CRUD illustrates how the CRUD for Branch and Customer would look; they would follow the same patterns, and that's why only it was implemented.
