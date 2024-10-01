@@ -3,8 +3,9 @@ using Sales.Domain.Repositories;
 
 namespace Sales.Domain.Aggregates.SaleAggregate;
 
-public class GetSalesSpecificationContract
+public sealed class GetSalesSpecificationContract
 {
+    public long? Id { get; set; }
     public long? CustomerId { get; set; }
     public long? BranchId { get; set; }
     public DateTime? SaleDateFrom { get; set; }
@@ -16,5 +17,5 @@ public class GetSalesSpecificationContract
     public int? Skip { get; set; }
     public int? Take { get; set; }
 
-    public List<OrderingField>? OrderingFields { get; set; }
+    public ICollection<OrderingField>? OrderingFields { get; set; }
 }

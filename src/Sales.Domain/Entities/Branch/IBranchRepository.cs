@@ -1,6 +1,6 @@
-﻿using Sales.Domain.Entities;
+﻿using Sales.Domain.Repositories;
 
-namespace Sales.Domain.Repositories
+namespace Sales.Domain.Entities
 {
     public interface IBranchRepository : IRepository<Branch>
     {

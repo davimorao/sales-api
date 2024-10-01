@@ -3,7 +3,7 @@ using Sales.Domain.Entities;
 
 namespace Sales.Application.Queries.GetProductsByFilters;
 
-public class GetProductsQuery : IRequest<GetProductsResult>
+public sealed class GetProductsQuery : IRequest<GetProductsResult>
 {
     public GetProductsSpecificationContract Contract { get; set; }
 

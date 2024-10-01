@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace Sales.Application.Messaging
 {
-    public class CommandPublisher : ICommandPublisher
+    public sealed class CommandPublisher : ICommandPublisher
     {
         private readonly ILogger<CommandPublisher> _logger;
 

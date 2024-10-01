@@ -4,11 +4,10 @@ using Microsoft.Extensions.Logging;
 using Sales.Application.Messaging;
 using Sales.Domain.Aggregates.SaleAggregate;
 using Sales.Domain.Aggregates.SaleAggregate.Events;
-using Sales.Domain.Repositories;
 
 namespace Sales.Application.Commands
 {
-    public class UpdateSaleCommandHandler : IRequestHandler<UpdateSaleCommand, BaseResponse<Sale>>
+    public sealed class UpdateSaleCommandHandler : IRequestHandler<UpdateSaleCommand, BaseResponse<Sale>>
     {
         private readonly IValidator<UpdateSaleCommand> _validator;
         private readonly ILogger<UpdateSaleCommand> _logger;

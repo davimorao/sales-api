@@ -23,13 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Branch\Requests\" />
-    <Folder Include="Controllers\Branch\Responses\" />
-    <Folder Include="Controllers\Customer\Requests\" />
-    <Folder Include="Controllers\Customer\Responses\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="certificates\aspnetapp.pfx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

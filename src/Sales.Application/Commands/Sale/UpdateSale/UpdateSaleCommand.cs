@@ -4,7 +4,7 @@ using Sales.Domain.Enums;
 
 namespace Sales.Application.Commands
 {
-    public class UpdateSaleCommand : IRequest<BaseResponse<Sale>>
+    public sealed class UpdateSaleCommand : IRequest<BaseResponse<Sale>>
     {
         public long Id { get; set; }
         public DateTime? SaleDate { get; set; }
@@ -14,7 +14,7 @@ namespace Sales.Application.Commands
         public required List<UpdateSaleItemDto> Items { get; set; } = [];
     }
 
-    public class UpdateSaleItemDto
+    public sealed class UpdateSaleItemDto
     {
         public required long ProductId { get; set; }
         public required int Quantity { get; set; }

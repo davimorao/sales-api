@@ -2,7 +2,7 @@
 
 namespace Sales.Application.Commands
 {
-    public class DeleteProductCommand : IRequest<BaseResponse<bool>>
+    public sealed class DeleteProductCommand : IRequest<BaseResponse<bool>>
     {
         public long Id { get; set; }
 

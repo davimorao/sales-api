@@ -4,7 +4,7 @@ using Sales.Domain.Entities;
 namespace Sales.Domain.Aggregates.SaleAggregate
 {
     [Table("SaleItem")]
-    public class SaleItem
+    public sealed class SaleItem
     {
         [Key]
         public long Id { get; set; }

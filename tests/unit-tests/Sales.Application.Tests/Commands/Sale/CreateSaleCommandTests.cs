@@ -10,7 +10,6 @@ using Sales.Application.Messaging;
 using Sales.Domain.Aggregates.SaleAggregate;
 using Sales.Domain.Aggregates.SaleAggregate.Events;
 using Sales.Domain.Enums;
-using Sales.Domain.Repositories;
 
 namespace Sales.Application.Tests.Commands
 {

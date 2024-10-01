@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using Sales.Application.Commands;
-using Sales.Domain.Repositories;
+using Sales.Domain.Entities.Products;
 
 namespace Sales.Application.Tests.Commands
 {

@@ -3,7 +3,7 @@ using Sales.Domain.Aggregates.SaleAggregate;
 
 namespace Sales.Domain.Entities
 {
-    public class Branch
+    public sealed class Branch
     {
         public long Id { get; set; }
         public string? BranchName { get; set; }

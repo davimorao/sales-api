@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sales.Infra.Persistence.Database.Specifications
 {
-    public class GetSalesSpecification : ISpecification<Sale>
+    public sealed class GetSalesSpecification : ISpecification<Sale>
     {
         private readonly List<string> _conditions = [];
         private readonly DynamicParameters _parameters = new DynamicParameters();
@@ -16,7 +16,8 @@ namespace Sales.Infra.Persistence.Database.Specifications
 
         public GetSalesSpecification(GetSalesSpecificationContract contract)
         {
-            WithCustomerId(contract.CustomerId)
+             WithId(contract.Id)
+            .WithCustomerId(contract.CustomerId)
             .WithBranchId(contract.BranchId)
             .WithSaleDateFrom(contract.SaleDateFrom)
             .WithSaleDateTo(contract.SaleDateTo)
@@ -25,6 +26,16 @@ namespace Sales.Infra.Persistence.Database.Specifications
             .WithMaxTotalSaleValue(contract.MaxTotalSaleValue)
             .WithOrdering(contract.OrderingFields)
             .WithPagination(contract.Skip, contract.Take);
+        }
+
+        private GetSalesSpecification WithId(long? id)
+        {
+            if (id.HasValue)
+            {
+                _conditions.Add("s.Id = @Id");
+                _parameters.Add("Id", id.Value);
+            }
+            return this;
         }
 
         private GetSalesSpecification WithCustomerId(long? customerId)
@@ -97,7 +108,7 @@ namespace Sales.Infra.Persistence.Database.Specifications
             return this;
         }
 
-        private GetSalesSpecification WithOrdering(List<OrderingField>? orderingFields)
+        private GetSalesSpecification WithOrdering(ICollection<OrderingField>? orderingFields)
         {
             if (orderingFields != null && orderingFields.Any())
             {

@@ -3,7 +3,7 @@ using Sales.Domain.Aggregates.SaleAggregate;
 
 namespace Sales.Application.Queries.GetSalesByFilters;
 
-public class GetSalesQuery : IRequest<GetSalesResult>
+public sealed class GetSalesQuery : IRequest<GetSalesResult>
 {
     public GetSalesSpecificationContract Contract { get; set; }
 

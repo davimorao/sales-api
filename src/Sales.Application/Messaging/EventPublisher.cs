@@ -1,26 +1,29 @@
-﻿using Microsoft.Extensions.Logging;
-using System.Text.Json;
+﻿using MassTransit;
+using Microsoft.Extensions.Logging;
 
 namespace Sales.Application.Messaging
 {
-    public class EventPublisher : IEventPublisher
+    public sealed class EventPublisher : IEventPublisher
     {
+        private readonly IPublishEndpoint _publishEndpoint;
         private readonly ILogger<EventPublisher> _logger;
 
-        public EventPublisher(ILogger<EventPublisher> logger)
+        public EventPublisher(IPublishEndpoint publishEndpoint, ILogger<EventPublisher> logger)
         {
+            _publishEndpoint = publishEndpoint;
             _logger = logger;
         }
 
-        public Task PublishAsync<T>(T @event)
+        public async Task PublishAsync<T>(T @event) where T : class
         {
-            if (@event != null)
+            if (@event is null)
             {
-                var eventData = JsonSerializer.Serialize(@event);
-                _logger.LogInformation($"Event of type {typeof(T).Name} with content {eventData} published successfully.");
+                _logger.LogWarning("Event is null.");
+                return;
             }
 
-            return Task.CompletedTask;
+            await _publishEndpoint.Publish(@event);
+            _logger.LogInformation($"Event of type {typeof(T).Name} published successfully.");
         }
     }
 }

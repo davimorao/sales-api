@@ -2,7 +2,7 @@ using Sales.Domain.Repositories;
 
 namespace Sales.Domain.Entities;
 
-public class GetProductsSpecificationContract
+public sealed class GetProductsSpecificationContract
 {
     public long? Id { get; set; }
     public string? ProductName { get; set; }

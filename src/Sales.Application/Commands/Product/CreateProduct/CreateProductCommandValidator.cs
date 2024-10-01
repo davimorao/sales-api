@@ -2,7 +2,7 @@
 
 namespace Sales.Application.Commands
 {
-    public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
+    public sealed class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
     {
         public CreateProductCommandValidator()
         {

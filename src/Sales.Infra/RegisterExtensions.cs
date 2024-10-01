@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Sales.Domain.Repositories;
+using Sales.Domain.Aggregates.SaleAggregate;
+using Sales.Domain.Entities;
+using Sales.Domain.Entities.Products;
 using Sales.Infra.Persistence.Database.Repositories;
 using System.Data;
 using System.Data.SqlClient;

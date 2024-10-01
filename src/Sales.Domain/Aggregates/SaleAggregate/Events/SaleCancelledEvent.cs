@@ -2,7 +2,7 @@
 
 namespace Sales.Domain.Aggregates.SaleAggregate.Events
 {
-    public class SaleCancelledEvent
+    public sealed record SaleCancelledEvent
     {
         public long Id { get; set; }
         public long CustomerId { get; set; }

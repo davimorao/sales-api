@@ -5,11 +5,10 @@ using Sales.Application.Messaging;
 using Sales.Domain.Aggregates.SaleAggregate;
 using Sales.Domain.Aggregates.SaleAggregate.Events;
 using Sales.Domain.Enums;
-using Sales.Domain.Repositories;
 
 namespace Sales.Application.Commands
 {
-    public class CreateSaleCommandHandler : IRequestHandler<CreateSaleCommand, BaseResponse<Sale>>
+    public sealed class CreateSaleCommandHandler : IRequestHandler<CreateSaleCommand, BaseResponse<Sale>>
     {
         private readonly IValidator<CreateSaleCommand> _validator;
         private readonly ILogger<CreateSaleCommand> _logger;
@@ -31,10 +30,16 @@ namespace Sales.Application.Commands
         {
             try
             {
+                _logger.LogInformation("Starting validation for CreateSaleCommand.");
                 var validationResult = await _validator.ValidateAsync(request, cancellationToken);
                 if (!validationResult.IsValid)
+                {
+                    _logger.LogError("Validation failed for CreateSaleCommand: {ValidationErrors}",
+                                       validationResult.Errors.Select(e => e.ErrorMessage));
                     return new BaseResponse<Sale>(validationResult.Errors.Select(e => e.ErrorMessage).ToList());
+                }
 
+                _logger.LogInformation("Building Sale entity for the CreateSaleCommand.");
                 var sale = new Sale
                 {
                     SaleNumber = Guid.NewGuid().ToString()[..20],
@@ -53,7 +58,9 @@ namespace Sales.Application.Commands
                 };
                 sale.TotalSaleValue = sale.Items.Sum(item => item.TotalItemValue);
 
+                _logger.LogInformation("Inserting sale into the repository.");
                 _ = await _saleRepository.InsertAsync(sale);
+                _logger.LogInformation("Sale inserted successfully with Id: {SaleId}", sale.Id);
 
                 var saleCreatedEvent = new SaleCreatedEvent
                 {

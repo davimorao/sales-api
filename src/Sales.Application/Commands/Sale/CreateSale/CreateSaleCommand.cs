@@ -3,7 +3,7 @@ using Sales.Domain.Aggregates.SaleAggregate;
 
 namespace Sales.Application.Commands
 {
-    public class CreateSaleCommand : IRequest<BaseResponse<Sale>>
+    public sealed class CreateSaleCommand : IRequest<BaseResponse<Sale>>
     {
         public required DateTime SaleDate { get; set; }
         public required long CustomerId { get; set; }

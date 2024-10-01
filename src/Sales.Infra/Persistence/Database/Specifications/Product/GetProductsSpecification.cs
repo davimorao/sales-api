@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sales.Infra.Persistence.Database.Specifications
 {
-    public class GetProductsSpecification : ISpecification<Product>
+    public sealed class GetProductsSpecification : ISpecification<Product>
     {
         private readonly List<string> _conditions = new List<string>();
         private readonly DynamicParameters _parameters = new DynamicParameters();

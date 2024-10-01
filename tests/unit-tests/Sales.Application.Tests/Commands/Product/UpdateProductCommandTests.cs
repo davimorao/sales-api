@@ -7,7 +7,7 @@ using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using Sales.Application.Commands;
 using Sales.Domain.Entities;
-using Sales.Domain.Repositories;
+using Sales.Domain.Entities.Products;
 
 namespace Sales.Application.Tests.Commands
 {

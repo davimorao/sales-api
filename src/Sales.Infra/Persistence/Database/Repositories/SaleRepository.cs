@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Sales.Infra.Persistence.Database.Repositories
 {
-    public class SaleRepository(IDbConnection dbConnection) : GenericRepository<Sale>(dbConnection), ISaleRepository
+    public sealed class SaleRepository(IDbConnection dbConnection) : GenericRepository<Sale>(dbConnection), ISaleRepository
     {
         private readonly IDbConnection _dbConnection = dbConnection;
 

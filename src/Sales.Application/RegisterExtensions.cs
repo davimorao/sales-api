@@ -1,5 +1,8 @@
 ﻿using FluentValidation;
+using MassTransit;
 using Sales.Application.Commands;
+using Sales.Application.Consumers;
+using Sales.Application.EventSource;
 using Sales.Application.Messaging;
 using Sales.Application.Queries.GetSalesByFilters;
 
@@ -22,6 +25,17 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddScoped<IEventPublisher, EventPublisher>();
             services.AddScoped<ICommandPublisher, CommandPublisher>();
+            services.AddSingleton<IEventStore, InMemoryEventStore>();
+
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumer<SaleUpdatedConsumer>();
+
+                x.UsingInMemory((context, cfg) =>
+                {
+                    cfg.ConfigureEndpoints(context);
+                });
+            });
             return services;
         }
     }

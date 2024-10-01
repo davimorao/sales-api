@@ -2,11 +2,11 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Sales.Domain.Entities;
-using Sales.Domain.Repositories;
+using Sales.Domain.Entities.Products;
 
 namespace Sales.Application.Commands
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, BaseResponse<Product>>
+    public sealed class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, BaseResponse<Product>>
     {
         private readonly IValidator<CreateProductCommand> _validator;
         private readonly ILogger<CreateProductCommand> _logger;
@@ -25,16 +25,24 @@ namespace Sales.Application.Commands
         {
             try
             {
+                _logger.LogInformation("Starting validation for CreateProductCommand");
                 var validationResult = await _validator.ValidateAsync(request, cancellationToken);
                 if (!validationResult.IsValid)
+                {
+                    _logger.LogError("Validation failed for CreateProductCommand: {ValidationErrors}",
+                                       validationResult.Errors.Select(e => e.ErrorMessage));
                     return new BaseResponse<Product>(validationResult.Errors.Select(e => e.ErrorMessage).ToList());
+                }
 
                 var createdProduct = new Product
                 {
                     ProductName = request.ProductName,
                     UnitPrice = request.UnitPrice
                 };
+
+                _logger.LogInformation("Inserting product into the repository");
                 _ = await _productRepository.InsertAsync(createdProduct);
+                _logger.LogInformation("Product inserted successfully with Id: {ProductId}", createdProduct.Id);
 
                 return new BaseResponse<Product>(createdProduct);
             }

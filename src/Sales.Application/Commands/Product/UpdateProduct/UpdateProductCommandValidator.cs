@@ -2,7 +2,7 @@
 
 namespace Sales.Application.Commands
 {
-    public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
+    public sealed class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
     {
         public UpdateProductCommandValidator()
         {

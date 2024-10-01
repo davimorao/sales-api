@@ -1,6 +1,6 @@
-﻿using Sales.Domain.Aggregates.SaleAggregate;
+﻿using Sales.Domain.Repositories;
 
-namespace Sales.Domain.Repositories
+namespace Sales.Domain.Aggregates.SaleAggregate
 {
     public interface ISaleRepository : IRepository<Sale>
     {

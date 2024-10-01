@@ -6,6 +6,7 @@ namespace Sales.API.Controllers.Requests
 {
     public class GetSaleRequest
     {
+        public long? Id { get; set; }
         public long? CustomerId { get; set; }
         public long? BranchId { get; set; }
         public DateTime? SaleDateFrom { get; set; }
@@ -17,6 +18,7 @@ namespace Sales.API.Controllers.Requests
 
         public GetSalesQuery ToCommand() => new(new GetSalesSpecificationContract
         {
+            Id = Id,
             CustomerId = CustomerId,
             BranchId = BranchId,
             SaleDateFrom = SaleDateFrom,

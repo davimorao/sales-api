@@ -5,7 +5,7 @@ using Sales.Domain.Enums;
 namespace Sales.Domain.Aggregates.SaleAggregate
 {
     [Table("Sale")]
-    public class Sale
+    public sealed class Sale
     {
         [Key]
         public long Id { get; set; }
