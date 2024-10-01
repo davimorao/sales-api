@@ -40,7 +40,6 @@ Ensure you have the following installed:
 
    ```bash
    http://localhost:8080/swagger/index.html
-   http://localhost:8081/swagger/index.html
 
 
 ## Database Structure and Initial Data
@@ -58,7 +57,7 @@ The SQL Server database is automatically created and populated with initial data
 | 101                  Customer A   |
 | 102                  Customer B   |
 
-## Table Customer
+## Table Product
 | Id                   ProductName                                                                                          UnitPrice |
 |-------------------------------------------------------------------------------------------------------------------------------------|
 | 301                  Produto 1                                                                                            200.00    |
@@ -116,3 +115,4 @@ The SQL Server database is automatically created and populated with initial data
 
 ## Notes
 - The Product CRUD illustrates how the CRUD for Branch and Customer would look; they would follow the same patterns, and that's why only it was implemented.
+- Sales do not have a DELETE method; the idea is that it should only be possible to cancel a sale by using the UPDATE route to change its status. The available statuses are: Active = 0, Cancelled = 1, Completed = 2, and they are found in the enum ESaleStatus.
