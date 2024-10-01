@@ -45,7 +45,6 @@ Ensure you have the following installed:
 
 ## Database Structure and Initial Data
 The SQL Server database is automatically created and populated with initial data upon startup. The data includes:
-goo
 
 ## Table Branch
 | Id                   BranchName |
