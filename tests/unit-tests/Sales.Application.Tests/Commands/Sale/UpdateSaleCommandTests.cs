@@ -6,14 +6,11 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using Sales.Application.Commands;
+using Sales.Application.Messaging;
 using Sales.Domain.Aggregates.SaleAggregate;
 using Sales.Domain.Aggregates.SaleAggregate.Events;
 using Sales.Domain.Enums;
 using Sales.Domain.Repositories;
-using Sales.Application.Messaging;
-using Xunit;
-using Sales.Domain.Entities;
-using Sales.Infra.Persistence.Database.Repositories;
 
 namespace Sales.Application.Tests.Commands
 {

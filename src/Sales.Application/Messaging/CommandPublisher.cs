@@ -1,5 +1,5 @@
-﻿using System.Text.Json;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using System.Text.Json;
 
 namespace Sales.Application.Messaging
 {
@@ -14,7 +14,7 @@ namespace Sales.Application.Messaging
 
         public Task PublishAsync<T>(T command)
         {
-            if(command != null)
+            if (command != null)
             {
                 var commandData = JsonSerializer.Serialize(command);
                 _logger.LogInformation($"Command of type {typeof(T).Name} with content {commandData} published successfully.");

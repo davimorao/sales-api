@@ -1,11 +1,9 @@
-﻿using Xunit;
-using FluentAssertions;
+﻿using Bogus;
 using Dapper;
-using Bogus;
-using Sales.Infra.Persistence.Database.Specifications;
+using FluentAssertions;
 using Sales.Domain.Entities;
 using Sales.Domain.Repositories;
-using System.Collections.Generic;
+using Sales.Infra.Persistence.Database.Specifications;
 
 namespace Sales.Infra.Tests.Specifications
 {

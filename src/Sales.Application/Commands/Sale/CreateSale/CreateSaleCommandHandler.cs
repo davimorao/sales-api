@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Sales.Application.Messaging;
 using Sales.Domain.Aggregates.SaleAggregate;
 using Sales.Domain.Aggregates.SaleAggregate.Events;
-using Sales.Domain.Repositories;
-using Sales.Application.Messaging;
 using Sales.Domain.Enums;
+using Sales.Domain.Repositories;
 
 namespace Sales.Application.Commands
 {
