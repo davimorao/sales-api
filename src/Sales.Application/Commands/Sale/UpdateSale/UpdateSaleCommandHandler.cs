@@ -38,7 +38,7 @@ namespace Sales.Application.Commands
                 if (sale == null)
                     return new BaseResponse<Sale>("Sale not found.");
 
-                if(request.SaleDate.HasValue)
+                if (request.SaleDate.HasValue)
                     sale.SaleDate = request.SaleDate.Value;
 
                 if (request.CustomerId.HasValue)
@@ -67,7 +67,7 @@ namespace Sales.Application.Commands
                 if (!result)
                     return new BaseResponse<Sale>("Error while updating Sale.");
 
-                if(sale.SaleStatus == Domain.Enums.ESaleStatus.Cancelled)
+                if (sale.SaleStatus == Domain.Enums.ESaleStatus.Cancelled)
                 {
                     await _eventPublisher.PublishAsync(new SaleCancelledEvent
                     {

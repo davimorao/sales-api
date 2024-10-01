@@ -7,7 +7,6 @@ using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using Sales.Application.Commands;
 using Sales.Domain.Repositories;
-using Xunit;
 
 namespace Sales.Application.Tests.Commands
 {

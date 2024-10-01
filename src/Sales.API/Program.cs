@@ -1,5 +1,4 @@
 using Serilog;
-using System.Net;
 
 namespace Sales.API
 {
