@@ -79,3 +79,35 @@ goo
 | 1                    1                    301                  2           200.00                                  0.00                                    400.00         |
 | 2                    1                    302                  1           600.00                                  0.00                                    600.00         |
 | 3                    2                    303                  5           100.00                                  0.00                                    500.00         |
+
+## Create a Sale
+
+   Run a request with **Method: POST** and **Action: /api/Sale**
+   
+   ```bash
+   Body:
+   {
+  "saleDate": "2024-10-01T00:54:46.999Z",
+  "customerId": 101,
+  "branchId": 201,
+  "items": [
+    {
+      "productId": 303,
+      "quantity": 5,
+      "unitPrice": 100,
+      "discount": 10
+    },
+{
+      "productId": 302,
+      "quantity": 5,
+      "unitPrice": 100,
+      "discount": 10
+    },
+{
+      "productId": 301,
+      "quantity": 5,
+      "unitPrice": 100,
+      "discount": 10
+    }
+  ]
+}
