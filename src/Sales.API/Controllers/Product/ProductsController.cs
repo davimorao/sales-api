@@ -19,8 +19,33 @@ namespace Sales.API.Controllers
             _logger = logger;
         }
 
+        [HttpGet("{id}", Name = "GetProductById")]
+        public async Task<IActionResult> Get(long id)
+        {
+            using (_logger.BeginScope("GetProducts Action"))
+            {
+                _logger.LogInformation("Starting GetProducts action");
+
+                try
+                {
+                    var request = new GetProductRequest { Id = id };
+                    var result = await _mediator.Send(request.ToCommand());
+                    _logger.LogInformation("GetProducts action completed successfully");
+                    if (result.Products.Any())
+                        return Ok(ProductResponse.FromResult(result).First());
+
+                    return NotFound();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "An error occurred while processing GetProducts action");
+                    throw;
+                }
+            }
+        }
+
         [HttpGet]
-        public async Task<IActionResult> GetProducts([FromQuery] GetProductRequest request)
+        public async Task<IActionResult> Get([FromQuery] GetProductRequest request)
         {
             using (_logger.BeginScope("GetProducts Action"))
             {
@@ -41,7 +66,7 @@ namespace Sales.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct([FromBody] CreateProductRequest request)
+        public async Task<IActionResult> Post([FromBody] CreateProductRequest request)
         {
             using (_logger.BeginScope("CreateProduct Action"))
             {
@@ -58,14 +83,12 @@ namespace Sales.API.Controllers
                 }
 
                 _logger.LogInformation("CreateProduct action completed successfully");
-                return CreatedAtAction(nameof(CreateProduct),
-                                       new { id = response.Data.Id },
-                                       ProductResponse.FromResult(response));
+                return CreatedAtRoute("GetProductById", new { id = response.Data.Id }, null);
             }
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct(long id, [FromBody] UpdateProductRequest request)
+        public async Task<IActionResult> Put(long id, [FromBody] UpdateProductRequest request)
         {
             using (_logger.BeginScope("UpdateProduct Action"))
             {
@@ -83,13 +106,12 @@ namespace Sales.API.Controllers
                 }
 
                 _logger.LogInformation("UpdateProduct action completed successfully for Id: {Id}", id);
-                return Ok(ProductResponse.FromResult(response));
+                return Ok();
             }
         }
 
-        // TODO: Implement soft delete
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(long id)
+        public async Task<IActionResult> Delete(long id)
         {
             using (_logger.BeginScope("DeleteProduct Action"))
             {

@@ -5,7 +5,7 @@ using System.Data;
 
 namespace Sales.Infra.Persistence.Database.Repositories;
 
-public class GenericRepository<T>(IDbConnection dbConnection) : IRepository<T> where T : class
+public abstract class GenericRepository<T>(IDbConnection dbConnection) : IRepository<T> where T : class
 {
     private readonly IDbConnection _dbConnection = dbConnection;
 
