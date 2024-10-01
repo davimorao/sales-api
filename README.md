@@ -83,7 +83,6 @@ The SQL Server database is automatically created and populated with initial data
    Run a request with **Method: POST** and **Action: /api/Sale**
    
    ```bash
-   Body:
    {
   "saleDate": "2024-10-01T00:54:46.999Z",
   "customerId": 101,
