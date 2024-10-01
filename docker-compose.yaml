@@ -1,0 +1,44 @@
+services:
+  mssql:
+    container_name: mssql_poc_sales
+    image: mcr.microsoft.com/mssql/server
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password@123
+      - MSSQL_PID=Developer
+
+  create_db_poc_sales:
+    image: mcr.microsoft.com/mssql-tools
+    depends_on:
+      - mssql
+    command: /bin/bash -c 'until /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P "Password@123" -Q "create database [poc-sales]"; do sleep 5; done'
+
+  flyway_poc_sales:
+    image: flyway/flyway
+    command: migrate
+    depends_on:
+      - mssql
+      - create_db_poc_sales
+    volumes:
+      - ./sql:/flyway/sql
+      - ./conf:/flyway/conf
+
+  webapi:
+    container_name: sales-api
+    build:
+      context: .
+      dockerfile: ./src/Sales.API/Dockerfile
+    ports:
+      - "8080:8080"  # Porta HTTP
+      - "8081:8081"  # Porta HTTPS
+    depends_on:
+      - mssql
+      - create_db_poc_sales
+      - flyway_poc_sales
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=mssql;Database=poc-sales;User=sa;Password=Password@123;
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=pocsales
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/certificates/aspnetapp.pfx
