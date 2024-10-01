@@ -112,6 +112,31 @@ The SQL Server database is automatically created and populated with initial data
 
 ````
 
+## Update a Sale
+
+   Run a request with **Method: PUT** and **Action: /api/Sale/2**
+   
+   ```bash
+   {
+  "id": 2,
+"saleDate": "2024-10-01T18:07:18.903",
+  "customerId": 102,
+  "branchId": 202,
+  "saleStatus": 0,
+  "items": [
+    {
+      "productId": 303,
+      "quantity": 5,
+      "unitPrice": 100,
+      "discount": 10
+    }
+  ]
+}
+
+
+````
+
+
 ## Notes
 - The Product CRUD illustrates how the CRUD for Branch and Customer would look; they would follow the same patterns, and that's why only it was implemented.
 - Sales do not have a DELETE method; the idea is that it should only be possible to cancel a sale by using the UPDATE route to change its status. The available statuses are: Active = 0, Cancelled = 1, Completed = 2, and they are found in the enum ESaleStatus.
