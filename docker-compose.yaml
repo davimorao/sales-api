@@ -40,5 +40,5 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Server=mssql;Database=poc-sales;User=sa;Password=Password@123;
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=pocsales
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/certificates/aspnetapp.pfx
+      # - ASPNETCORE_Kestrel__Certificates__Default__Password=pocsales
+      # - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/certificates/aspnetapp.pfx
