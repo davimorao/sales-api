@@ -1,0 +1,16 @@
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
+WORKDIR /app
+
+COPY SalesSolution.sln ./
+COPY src/ ./src/
+
+RUN dotnet restore
+
+WORKDIR /app/src/Sales.API
+RUN dotnet publish -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS runtime
+WORKDIR /app
+COPY --from=build /app/src/Sales.API/out ./
+ENTRYPOINT ["dotnet", "Sales.API.dll"]
