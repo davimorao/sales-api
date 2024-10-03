@@ -3,9 +3,9 @@ using Sales.Domain.Entities;
 using Sales.Domain.Repositories;
 using System.Text;
 
-namespace Sales.Infra.Persistence.Database.Specifications
+namespace Sales.Infra.Persistence.Specifications
 {
-    public sealed class GetProductsSpecification : ISpecification<Product>
+    public sealed class GetProductsSpecification : ISqlSpecification<Product>
     {
         private readonly List<string> _conditions = new List<string>();
         private readonly DynamicParameters _parameters = new DynamicParameters();

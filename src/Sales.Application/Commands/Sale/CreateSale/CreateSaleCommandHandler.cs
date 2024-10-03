@@ -62,13 +62,7 @@ namespace Sales.Application.Commands
                 _ = await _saleRepository.InsertAsync(sale);
                 _logger.LogInformation("Sale inserted successfully with Id: {SaleId}", sale.Id);
 
-                var saleCreatedEvent = new SaleCreatedEvent
-                {
-                    Id = sale.Id,
-                    CustomerId = sale.CustomerId,
-                    BranchId = sale.BranchId,
-                    SaleStatus = sale.SaleStatus
-                };
+                var saleCreatedEvent = new SaleCreatedEvent(sale);
                 await _eventPublisher.PublishAsync(saleCreatedEvent);
 
                 return new BaseResponse<Sale>(sale);

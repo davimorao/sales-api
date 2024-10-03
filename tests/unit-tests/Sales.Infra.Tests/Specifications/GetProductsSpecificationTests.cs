@@ -3,7 +3,7 @@ using Dapper;
 using FluentAssertions;
 using Sales.Domain.Entities;
 using Sales.Domain.Repositories;
-using Sales.Infra.Persistence.Database.Specifications;
+using Sales.Infra.Persistence.Specifications;
 
 namespace Sales.Infra.Tests.Specifications
 {

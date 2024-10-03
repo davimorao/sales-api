@@ -1,12 +1,15 @@
-﻿using Sales.Domain.Enums;
+﻿using Sales.Domain.Entities;
+using System.Text.Json;
 
 namespace Sales.Domain.Aggregates.SaleAggregate.Events
 {
-    public sealed record SaleUpdatedEvent
+    public sealed class SaleUpdatedEvent : DomainEvent
     {
-        public long Id { get; set; }
-        public long CustomerId { get; set; }
-        public long BranchId { get; set; }
-        public ESaleStatus SaleStatus { get; set; }
+        public SaleUpdatedEvent(Sale sale)
+        {
+            AggregateType = "Sale";
+            EventType = "SaleUpdated";
+            EventData = JsonSerializer.Serialize(sale);
+        }
     }
 }

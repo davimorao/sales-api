@@ -29,7 +29,7 @@ namespace Sales.API.Controllers.Responses
                     var request = new GetSaleRequest { Id = id };
                     var result = await _mediator.Send(request.ToCommand());
                     _logger.LogInformation("GetSales action completed successfully");
-                    if(result.Sales.Any())
+                    if (result.Sales.Any())
                         return Ok(SaleResponse.FromResult(result).First());
 
                     return NotFound();

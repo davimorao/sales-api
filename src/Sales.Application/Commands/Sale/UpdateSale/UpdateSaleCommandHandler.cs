@@ -78,13 +78,7 @@ namespace Sales.Application.Commands
                 }
                 else
                 {
-                    await _eventPublisher.PublishAsync(new SaleUpdatedEvent
-                    {
-                        Id = sale.Id,
-                        CustomerId = sale.CustomerId,
-                        BranchId = sale.BranchId,
-                        SaleStatus = sale.SaleStatus
-                    });
+                    await _eventPublisher.PublishAsync(new SaleUpdatedEvent(sale));
                 }
 
                 return new BaseResponse<Sale>(sale);

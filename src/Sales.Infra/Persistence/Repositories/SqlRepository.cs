@@ -3,13 +3,13 @@ using Dapper.Contrib.Extensions;
 using Sales.Domain.Repositories;
 using System.Data;
 
-namespace Sales.Infra.Persistence.Database.Repositories;
+namespace Sales.Infra.Persistence.Repositories;
 
-public abstract class GenericRepository<T>(IDbConnection dbConnection) : IRepository<T> where T : class
+public abstract class SqlRepository<T>(IDbConnection dbConnection) : ISqlRepository<T> where T : class
 {
     private readonly IDbConnection _dbConnection = dbConnection;
 
-    public virtual async Task<IEnumerable<T>> GetBySpecificationAsync(ISpecification<T> specification)
+    public virtual async Task<IEnumerable<T>> GetBySpecificationAsync(ISqlSpecification<T> specification)
     {
         var sql = specification.ToSqlQuery();
         var parameters = specification.Parameters;

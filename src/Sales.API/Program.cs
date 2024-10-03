@@ -40,7 +40,7 @@ namespace Sales.API
 
                 builder.Services.AddUseCases();
                 builder.Services.AddMessageQueue();
-                builder.Services.AddPersistence();
+                builder.Services.AddPersistence(builder.Configuration);
 
                 var app = builder.Build();
 

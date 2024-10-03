@@ -2,7 +2,7 @@
 
 namespace Sales.Domain.Entities
 {
-    public interface IBranchRepository : IRepository<Branch>
+    public interface IBranchRepository : ISqlRepository<Branch>
     {
     }
 }

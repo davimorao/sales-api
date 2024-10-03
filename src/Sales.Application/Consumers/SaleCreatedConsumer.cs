@@ -5,18 +5,18 @@ using Sales.Domain.Repositories;
 
 namespace Sales.Application.Consumers
 {
-    public sealed class SaleUpdatedConsumer : IConsumer<SaleUpdatedEvent>
+    public class SaleCreatedConsumer : IConsumer<SaleCreatedEvent>
     {
-        private readonly ILogger<SaleUpdatedConsumer> _logger;
+        private readonly ILogger<SaleCreatedConsumer> _logger;
         private readonly IMongoRepository _mongoRepository;
 
-        public SaleUpdatedConsumer(ILogger<SaleUpdatedConsumer> logger, IMongoRepository mongoRepository)
+        public SaleCreatedConsumer(ILogger<SaleCreatedConsumer> logger, IMongoRepository mongoRepository)
         {
             _logger = logger;
             _mongoRepository = mongoRepository;
         }
 
-        public async Task Consume(ConsumeContext<SaleUpdatedEvent> context)
+        public async Task Consume(ConsumeContext<SaleCreatedEvent> context)
         {
             var message = context.Message;
             _logger.LogInformation($"Event consumed with Id: {message.Id}");

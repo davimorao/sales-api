@@ -4,9 +4,9 @@ using Sales.Domain.Enums;
 using Sales.Domain.Repositories;
 using System.Text;
 
-namespace Sales.Infra.Persistence.Database.Specifications
+namespace Sales.Infra.Persistence.Specifications
 {
-    public sealed class GetSalesSpecification : ISpecification<Sale>
+    public sealed class GetSalesSpecification : ISqlSpecification<Sale>
     {
         private readonly List<string> _conditions = [];
         private readonly DynamicParameters _parameters = new DynamicParameters();
@@ -16,16 +16,16 @@ namespace Sales.Infra.Persistence.Database.Specifications
 
         public GetSalesSpecification(GetSalesSpecificationContract contract)
         {
-             WithId(contract.Id)
-            .WithCustomerId(contract.CustomerId)
-            .WithBranchId(contract.BranchId)
-            .WithSaleDateFrom(contract.SaleDateFrom)
-            .WithSaleDateTo(contract.SaleDateTo)
-            .WithSaleStatus(contract.SaleStatus)
-            .WithMinTotalSaleValue(contract.MinTotalSaleValue)
-            .WithMaxTotalSaleValue(contract.MaxTotalSaleValue)
-            .WithOrdering(contract.OrderingFields)
-            .WithPagination(contract.Skip, contract.Take);
+            WithId(contract.Id)
+           .WithCustomerId(contract.CustomerId)
+           .WithBranchId(contract.BranchId)
+           .WithSaleDateFrom(contract.SaleDateFrom)
+           .WithSaleDateTo(contract.SaleDateTo)
+           .WithSaleStatus(contract.SaleStatus)
+           .WithMinTotalSaleValue(contract.MinTotalSaleValue)
+           .WithMaxTotalSaleValue(contract.MaxTotalSaleValue)
+           .WithOrdering(contract.OrderingFields)
+           .WithPagination(contract.Skip, contract.Take);
         }
 
         private GetSalesSpecification WithId(long? id)
