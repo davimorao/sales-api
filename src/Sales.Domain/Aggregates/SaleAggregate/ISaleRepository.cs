@@ -2,8 +2,8 @@
 
 namespace Sales.Domain.Aggregates.SaleAggregate
 {
-    public interface ISaleRepository : IRepository<Sale>
+    public interface ISaleRepository : ISqlRepository<Sale>
     {
-        Task<IEnumerable<Sale>> GetBySpecificationWithRelationShipAsync(ISpecification<Sale> specification);
+        Task<IEnumerable<Sale>> GetBySpecificationWithRelationShipAsync(ISqlSpecification<Sale> specification);
     }
 }

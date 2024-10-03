@@ -5,13 +5,13 @@ using Sales.Domain.Entities;
 using Sales.Domain.Repositories;
 using System.Data;
 
-namespace Sales.Infra.Persistence.Database.Repositories
+namespace Sales.Infra.Persistence.Repositories
 {
-    public sealed class SaleRepository(IDbConnection dbConnection) : GenericRepository<Sale>(dbConnection), ISaleRepository
+    public sealed class SaleRepository(IDbConnection dbConnection) : SqlRepository<Sale>(dbConnection), ISaleRepository
     {
         private readonly IDbConnection _dbConnection = dbConnection;
 
-        public async Task<IEnumerable<Sale>> GetBySpecificationWithRelationShipAsync(ISpecification<Sale> specification)
+        public async Task<IEnumerable<Sale>> GetBySpecificationWithRelationShipAsync(ISqlSpecification<Sale> specification)
         {
             var sql = specification.ToSqlQuery();
             var parameters = specification.Parameters;

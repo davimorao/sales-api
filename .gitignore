@@ -219,7 +219,7 @@ ClientBin/
 *.dbmdl
 *.dbproj.schemaview
 *.jfm
- *.pfx
+*.pfx
 *.publishsettings
 orleans.codegen.cs
 
@@ -352,3 +352,6 @@ target/**
 **/.sonarqube
 **/coverage.opencover.xml
 **/coverage.cobertura.xml
+/data/mongo
+/database/db/diagnostic.data
+/database/db

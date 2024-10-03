@@ -4,7 +4,7 @@ using FluentAssertions;
 using Sales.Domain.Aggregates.SaleAggregate;
 using Sales.Domain.Enums;
 using Sales.Domain.Repositories;
-using Sales.Infra.Persistence.Database.Specifications;
+using Sales.Infra.Persistence.Specifications;
 
 namespace Sales.Infra.Tests.Specifications
 {

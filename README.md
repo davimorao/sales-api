@@ -48,21 +48,21 @@ The SQL Server database is automatically created and populated with initial data
 ## Table Branch
 | Id                   BranchName |
 |---------------------------------|
-| 201                  Filial X   |
-| 202                  Filial Y   |
+| 1                  Filial X   |
+| 2                  Filial Y   |
 
 ## Table Customer
 | Id                   CustomerName |
 |-----------------------------------|
-| 101                  Customer A   |
-| 102                  Customer B   |
+| 1                  Customer A   |
+| 2                  Customer B   |
 
 ## Table Product
 | Id                   ProductName                                                                                          UnitPrice |
 |-------------------------------------------------------------------------------------------------------------------------------------|
-| 301                  Produto 1                                                                                            200.00    |
-| 302                  Produto 2                                                                                            600.00    |
-| 303                  Produto 3                                                                                            100.00    |
+| 1                  Produto 1                                                                                            200.00    |
+| 2                  Produto 2                                                                                            600.00    |
+| 3                  Produto 3                                                                                            100.00    |
 
 ## Table Sale
 | Id                   SaleNumber           SaleDate                CustomerId           BranchId             TotalSaleValue                          SaleStatus |
@@ -85,23 +85,23 @@ The SQL Server database is automatically created and populated with initial data
    ```bash
    {
   "saleDate": "2024-10-01T00:54:46.999Z",
-  "customerId": 101,
-  "branchId": 201,
+  "customerId": 1,
+  "branchId": 1,
   "items": [
     {
-      "productId": 303,
+      "productId": 1,
       "quantity": 5,
-      "unitPrice": 100,
+      "unitPrice": 200,
       "discount": 10
     },
    {
-         "productId": 302,
+         "productId": 2,
          "quantity": 5,
-         "unitPrice": 100,
+         "unitPrice": 600,
          "discount": 10
        },
    {
-         "productId": 301,
+         "productId": 3,
          "quantity": 5,
          "unitPrice": 100,
          "discount": 10
@@ -120,12 +120,12 @@ The SQL Server database is automatically created and populated with initial data
    {
   "id": 2,
 "saleDate": "2024-10-01T18:07:18.903",
-  "customerId": 102,
-  "branchId": 202,
+  "customerId": 1,
+  "branchId": 1,
   "saleStatus": 0,
   "items": [
     {
-      "productId": 303,
+      "productId": 3,
       "quantity": 5,
       "unitPrice": 100,
       "discount": 10
@@ -136,6 +136,19 @@ The SQL Server database is automatically created and populated with initial data
 
 ````
 
+## Event Store
+
+The event store is configured for the creation and updating of sales. To view the sales event store table, access the URL below and use the following credentials:
+
+- **Username:** mexpress
+- **Password:** mexpress
+- **Database:** SalesDatabase
+- **Collection:** Events
+
+````
+http://localhost:8081/
+
+````
 
 ## Notes
 - The Product CRUD illustrates how the CRUD for Branch and Customer would look; they would follow the same patterns, and that's why only it was implemented.

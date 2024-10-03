@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Sales.Domain.Aggregates.SaleAggregate;
-using Sales.Infra.Persistence.Database.Specifications;
+using Sales.Infra.Persistence.Specifications;
 
 namespace Sales.Application.Queries.GetSalesByFilters;
 

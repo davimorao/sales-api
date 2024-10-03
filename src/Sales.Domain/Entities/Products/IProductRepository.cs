@@ -2,7 +2,7 @@
 
 namespace Sales.Domain.Entities.Products
 {
-    public interface IProductRepository : IRepository<Product>
+    public interface IProductRepository : ISqlRepository<Product>
     {
     }
 }
